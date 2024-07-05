@@ -1,0 +1,17 @@
+[Unit]
+Description=Gunicorn Daemon for FastAPI Demo Application
+After=network.target
+
+[Service]
+User=ml
+Group=ml
+Restart=always
+WorkingDirectory=/home/ml/work/hhs/req_fastapi
+StandardOutput=file:/home/ml/work/hhs/req_fastapi/logs/access.log
+StandardError=file:/home/ml/work/hhs/req_fastapi/logs/error.log
+ExecStart=/home/ml/work/hhs/req_fastapi/venv/bin/uvicorn main:app --host 0.0.0.0 --port 8888
+
+
+
+[Install]
+WantedBy=multi-user.target
